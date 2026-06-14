@@ -1005,12 +1005,23 @@ a {
     line-height: 1.5;
   }
 
-  .hero-image {
+  .hero-image,
+  .about-image {
     border-radius: 20px;
+    padding: 12px;
+    overflow: hidden;
+    background: #090909;
   }
 
-  .hero-image img {
-    height: 300px;
+  .hero-image img,
+  .about-image img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    min-height: 0;
+    object-fit: contain;
+    object-position: center center;
+    border-radius: 14px;
   }
 
   .hero-image::before {
@@ -1080,19 +1091,12 @@ a {
     gap: 32px;
   }
 
-  .about-image {
-    border-radius: 20px;
-  }
-
-  .about-image img {
-    height: 300px;
-  }
-
   .image-label {
-    left: 14px;
-    bottom: 14px;
+    left: 22px;
+    bottom: 22px;
     padding: 14px 16px;
     border-radius: 14px;
+    max-width: calc(100% - 44px);
   }
 
   .image-label span {
@@ -1320,7 +1324,10 @@ a {
 
   .hero-image img,
   .about-image img {
-    height: 260px;
+    height: auto;
+    max-height: none;
+    min-height: 0;
+    object-fit: contain;
   }
 
   .gallery-card,
