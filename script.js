@@ -1,25 +1,44 @@
 const burger = document.getElementById("burger");
 const navLinks = document.getElementById("navLinks");
 
+const closeMobileMenu = () => {
+  if (!burger || !navLinks) return;
+
+  navLinks.classList.remove("active");
+  burger.classList.remove("active");
+  burger.setAttribute("aria-expanded", "false");
+  document.body.classList.remove("menu-open");
+};
+
+const toggleMobileMenu = () => {
+  if (!burger || !navLinks) return;
+
+  const isOpen = navLinks.classList.toggle("active");
+
+  burger.classList.toggle("active", isOpen);
+  burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  document.body.classList.toggle("menu-open", isOpen);
+};
+
 if (burger && navLinks) {
-  burger.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-  });
+  burger.addEventListener("click", toggleMobileMenu);
 }
 
 document.querySelectorAll(".nav-links a").forEach((link) => {
-  link.addEventListener("click", () => {
-    if (navLinks) {
-      navLinks.classList.remove("active");
-    }
-  });
+  link.addEventListener("click", closeMobileMenu);
 });
 
 document.addEventListener("scroll", () => {
   if (navLinks && navLinks.classList.contains("active")) {
-    navLinks.classList.remove("active");
+    closeMobileMenu();
   }
 }, { passive: true });
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 820) {
+    closeMobileMenu();
+  }
+});
 
 const showMoreBtn = document.getElementById("showMoreBtn");
 const showLessBtn = document.getElementById("showLessBtn");
@@ -58,6 +77,13 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 const lightboxClose = document.getElementById("lightboxClose");
 
+const closeLightbox = () => {
+  if (!lightbox || !lightboxImg) return;
+
+  lightbox.classList.remove("active");
+  lightboxImg.src = "";
+};
+
 document.querySelectorAll(".gallery-card img").forEach((img) => {
   img.addEventListener("click", () => {
     if (!lightbox || !lightboxImg) return;
@@ -69,32 +95,20 @@ document.querySelectorAll(".gallery-card img").forEach((img) => {
 });
 
 if (lightboxClose) {
-  lightboxClose.addEventListener("click", () => {
-    if (!lightbox || !lightboxImg) return;
-
-    lightbox.classList.remove("active");
-    lightboxImg.src = "";
-  });
+  lightboxClose.addEventListener("click", closeLightbox);
 }
 
 if (lightbox) {
   lightbox.addEventListener("click", (event) => {
     if (event.target === lightbox) {
-      lightbox.classList.remove("active");
-
-      if (lightboxImg) {
-        lightboxImg.src = "";
-      }
+      closeLightbox();
     }
   });
 }
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && lightbox) {
-    lightbox.classList.remove("active");
-
-    if (lightboxImg) {
-      lightboxImg.src = "";
-    }
+  if (event.key === "Escape") {
+    closeMobileMenu();
+    closeLightbox();
   }
 });
