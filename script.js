@@ -15,6 +15,12 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
   });
 });
 
+document.addEventListener("scroll", () => {
+  if (navLinks && navLinks.classList.contains("active")) {
+    navLinks.classList.remove("active");
+  }
+}, { passive: true });
+
 const showMoreBtn = document.getElementById("showMoreBtn");
 const showLessBtn = document.getElementById("showLessBtn");
 const hiddenGalleryItems = document.querySelectorAll(".hidden-gallery");
