@@ -1627,4 +1627,24 @@ a {
     display: none !important;
     border: none !important;
   }
+  /* ===== HERO BEZ OBRÁZKA - OPRAVA PRÁZDNEHO MIESTA ===== */
+
+.hero-no-image .hero-grid {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: start;
+}
+
+.hero-no-image .hero-content {
+  max-width: 760px;
+}
+
+@media (max-width: 820px) {
+  .hero-no-image .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-no-image .hero-content {
+    max-width: 100%;
+  }
+}
 }
