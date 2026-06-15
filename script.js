@@ -62,14 +62,10 @@ if (showMoreBtn && showLessBtn) {
     showLessBtn.style.display = "none";
     showMoreBtn.style.display = "inline-flex";
 
-    const gallerySection = document.getElementById("galeria");
-
-    if (gallerySection) {
-      gallerySection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   });
 }
 
@@ -84,9 +80,12 @@ const closeLightbox = () => {
   lightboxImg.src = "";
 };
 
-document.querySelectorAll(".gallery-card img").forEach((img) => {
-  img.addEventListener("click", () => {
+document.querySelectorAll(".gallery-card img, .material-card img, .preview-card img").forEach((img) => {
+  img.addEventListener("click", (event) => {
+    if (img.closest(".preview-card")) return;
     if (!lightbox || !lightboxImg) return;
+
+    event.preventDefault();
 
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
