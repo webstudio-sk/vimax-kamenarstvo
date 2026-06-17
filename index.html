@@ -4,16 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ22SXC6H9"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-RZ22SXC6H9');
-  </script>
-
   <title>VIMAX group, s.r.o. | Kamenárstvo Hanušovce nad Topľou</title>
 
   <meta
@@ -24,7 +14,17 @@
   <link rel="icon" type="image/jpeg" href="images/logo-vimax.jpeg" />
   <link rel="apple-touch-icon" href="images/logo-vimax.jpeg" />
 
- <link rel="stylesheet" href="style.css?v=8" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ22SXC6H9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RZ22SXC6H9');
+  </script>
+
+  <link rel="stylesheet" href="style.css?v=9" />
 </head>
 
 <body>
@@ -333,7 +333,6 @@
     <img src="" alt="Zväčšená fotografia" id="lightboxImg" />
   </div>
 
-  <script src="script.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
@@ -341,7 +340,8 @@
           if (typeof gtag === "function") {
             gtag("event", "click_phone", {
               event_category: "contact",
-              event_label: link.getAttribute("href")
+              event_label: link.getAttribute("href"),
+              transport_type: "beacon"
             });
           }
         });
@@ -352,7 +352,8 @@
           if (typeof gtag === "function") {
             gtag("event", "click_email", {
               event_category: "contact",
-              event_label: link.getAttribute("href")
+              event_label: link.getAttribute("href"),
+              transport_type: "beacon"
             });
           }
         });
@@ -360,5 +361,6 @@
     });
   </script>
 
+  <script src="script.js"></script>
 </body>
 </html>
