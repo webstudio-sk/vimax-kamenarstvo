@@ -4,12 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ22SXC6H9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RZ22SXC6H9');
+  </script>
+
   <title>Pomníky | VIMAX group, s.r.o.</title>
 
   <meta
     name="description"
     content="Predaj a montáž pomníkov, výkop a montáž hrobiek, dopisovanie dátumov a renovácia pomníkov."
   />
+
+  <link rel="icon" type="image/jpeg" href="images/logo-vimax.jpeg" />
+  <link rel="apple-touch-icon" href="images/logo-vimax.jpeg" />
 
  <link rel="stylesheet" href="style.css?v=8" />
 </head>
@@ -255,5 +268,31 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
+        link.addEventListener("click", function () {
+          if (typeof gtag === "function") {
+            gtag("event", "click_phone", {
+              event_category: "contact",
+              event_label: link.getAttribute("href")
+            });
+          }
+        });
+      });
+
+      document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+        link.addEventListener("click", function () {
+          if (typeof gtag === "function") {
+            gtag("event", "click_email", {
+              event_category: "contact",
+              event_label: link.getAttribute("href")
+            });
+          }
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>
